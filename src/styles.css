@@ -123,3 +123,24 @@ a, button {
 @utility shadow-glow {
   box-shadow: var(--shadow-glow);
 }
+
+.page-loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: oklch(0.14 0.01 60 / 0.98);
+  animation: loader-fade-in 160ms ease-out both;
+}
+
+.page-loader-logo {
+  animation: loader-logo-pulse 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 24px oklch(0.68 0.22 35 / 0.45));
+}
+
+.page-loader-progress { animation: loader-progress 1s ease-in-out infinite; }
+
+@keyframes loader-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes loader-logo-pulse { 0%, 100% { transform: scale(0.94); opacity: 0.78; } 50% { transform: scale(1); opacity: 1; } }
+@keyframes loader-progress { 0% { width: 15%; transform: translateX(-100%); } 50% { width: 65%; transform: translateX(30%); } 100% { width: 15%; transform: translateX(700%); } }

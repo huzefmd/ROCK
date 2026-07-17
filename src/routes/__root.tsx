@@ -12,7 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header, Footer } from "../components/site-chrome";
-import { PageLoader } from "../components/page-loader";
+import { GlobalPageLoader, PageLoader } from "../components/page-loader";
 
 function NotFoundComponent() {
   return (
@@ -92,6 +92,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col bg-background">
+        <GlobalPageLoader />
         <Header />
         <main className="flex-1 pt-16">
           <Outlet />
