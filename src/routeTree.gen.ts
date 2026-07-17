@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TrainersRouteImport } from './routes/trainers'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as NutritionRouteImport } from './routes/nutrition'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ClassesRouteImport } from './routes/classes'
 import { Route as IndexRouteImport } from './routes/index'
@@ -23,6 +24,11 @@ const TrainersRoute = TrainersRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NutritionRoute = NutritionRouteImport.update({
+  id: '/nutrition',
+  path: '/nutrition',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/classes': typeof ClassesRoute
   '/contact': typeof ContactRoute
+  '/nutrition': typeof NutritionRoute
   '/pricing': typeof PricingRoute
   '/trainers': typeof TrainersRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/classes': typeof ClassesRoute
   '/contact': typeof ContactRoute
+  '/nutrition': typeof NutritionRoute
   '/pricing': typeof PricingRoute
   '/trainers': typeof TrainersRoute
 }
@@ -60,21 +68,31 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/classes': typeof ClassesRoute
   '/contact': typeof ContactRoute
+  '/nutrition': typeof NutritionRoute
   '/pricing': typeof PricingRoute
   '/trainers': typeof TrainersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/classes' | '/contact' | '/pricing' | '/trainers'
+  fullPaths:
+    '/' | '/classes' | '/contact' | '/nutrition' | '/pricing' | '/trainers'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/classes' | '/contact' | '/pricing' | '/trainers'
-  id: '__root__' | '/' | '/classes' | '/contact' | '/pricing' | '/trainers'
+  to: '/' | '/classes' | '/contact' | '/nutrition' | '/pricing' | '/trainers'
+  id:
+    | '__root__'
+    | '/'
+    | '/classes'
+    | '/contact'
+    | '/nutrition'
+    | '/pricing'
+    | '/trainers'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ClassesRoute: typeof ClassesRoute
   ContactRoute: typeof ContactRoute
+  NutritionRoute: typeof NutritionRoute
   PricingRoute: typeof PricingRoute
   TrainersRoute: typeof TrainersRoute
 }
@@ -93,6 +111,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nutrition': {
+      id: '/nutrition'
+      path: '/nutrition'
+      fullPath: '/nutrition'
+      preLoaderRoute: typeof NutritionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -123,6 +148,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ClassesRoute: ClassesRoute,
   ContactRoute: ContactRoute,
+  NutritionRoute: NutritionRoute,
   PricingRoute: PricingRoute,
   TrainersRoute: TrainersRoute,
 }

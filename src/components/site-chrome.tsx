@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Dumbbell, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -11,9 +11,7 @@ export function Header() {
     <header className="fixed top-0 z-50 w-full backdrop-blur-md bg-background/70 border-b border-border">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <div className="h-9 w-9 rounded-md bg-gradient-brand grid place-items-center shadow-glow">
-            <Dumbbell className="h-5 w-5 text-brand-foreground" strokeWidth={2.5} />
-          </div>
+          <img src="/rock-gym-logo.svg" alt="Rock Gym" className="h-9 w-9 drop-shadow-[0_0_10px_rgba(238,90,42,0.4)]" />
           <span className="font-display text-2xl tracking-wider">
             ROCK <span className="text-brand">GYM</span>
           </span>
@@ -24,6 +22,7 @@ export function Header() {
           <Link to="/classes" className={linkClass} activeProps={{ className: activeClass }}>Classes</Link>
           <Link to="/trainers" className={linkClass} activeProps={{ className: activeClass }}>Coaches</Link>
           <Link to="/pricing" className={linkClass} activeProps={{ className: activeClass }}>Membership</Link>
+          <Link to="/nutrition" className={linkClass} activeProps={{ className: activeClass }}>Nutrition</Link>
           <Link to="/contact" className={linkClass} activeProps={{ className: activeClass }}>Contact</Link>
         </nav>
 
@@ -42,6 +41,7 @@ export function Header() {
             <Link to="/classes" onClick={() => setOpen(false)}>Classes</Link>
             <Link to="/trainers" onClick={() => setOpen(false)}>Coaches</Link>
             <Link to="/pricing" onClick={() => setOpen(false)}>Membership</Link>
+            <Link to="/nutrition" onClick={() => setOpen(false)}>Nutrition</Link>
             <Link to="/contact" onClick={() => setOpen(false)}>Contact</Link>
             <Link to="/pricing" onClick={() => setOpen(false)} className="rounded-md bg-brand px-4 py-2 font-semibold text-brand-foreground text-center">Join Now</Link>
           </div>
@@ -56,9 +56,7 @@ export function Footer() {
     <footer className="border-t border-border py-12 mt-auto">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-md bg-gradient-brand grid place-items-center">
-            <Dumbbell className="h-4 w-4 text-brand-foreground" strokeWidth={2.5} />
-          </div>
+          <img src="/rock-gym-logo.svg" alt="Rock Gym" className="h-8 w-8" />
           <span className="font-display text-xl tracking-wider">ROCK <span className="text-brand">GYM</span></span>
         </div>
         <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Rock Gym. All rights reserved.</p>
